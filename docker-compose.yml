@@ -1,0 +1,18 @@
+version: '3'
+services:
+  fastlio:
+    image: kenny0407/marslab_fastlio2:latest
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    environment:
+      - DISPLAY=${DISPLAY}
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/bus/usb:/dev/bus/usb
+      - /home/$USER/docker_ws:/home/mars_ugv/docker_ws
+      - /home/dev/data:/data
+      - ./:/home/mars_ugv/FAST_LIO_host
+    network_mode: host
+    privileged: true
